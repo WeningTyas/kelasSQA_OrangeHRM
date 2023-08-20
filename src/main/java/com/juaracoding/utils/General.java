@@ -6,6 +6,12 @@ import org.openqa.selenium.WebDriver;
 public class General {
 
     private static WebDriver driver;
+    private JavascriptExecutor jse;
+
+    public General(WebDriver driver) {
+        this.driver = driver;
+        this.jse = (JavascriptExecutor) driver;
+    }
 
     public static void delay(long sec){
         try {
@@ -16,7 +22,6 @@ public class General {
     }
 
     public void scrollBy(int x, int y) {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
         String script = String.format("window.scrollBy(%d, %d);", x, y);
         jse.executeScript(script);
     }
