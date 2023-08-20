@@ -26,25 +26,71 @@ public class LoginPage {
     WebElement btnLogin;
 
     @FindBy(xpath = "//h6[contains(@class, 'topbar-header-breadcrumb')]")
-    WebElement txtDashnoard;
+    WebElement txtDashboard;
 
-    //Custom methode
-    public void login(){
-        username.sendKeys("Admin");
-        password.sendKeys("admin123");
+//    @FindBy(xpath = "//div[@class='orangehrm-login-slot-wrapper']//div[1]//div[1]//span[1]")
+    @FindBy(xpath = "//div[contains(@class, 'login-slot-wrapper')]//div[1]//div[1]//span[1]")
+    WebElement txtRequiredUname;
+
+//    @FindBy(xpath = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
+    @FindBy(xpath = "//span[contains(@class, 'error-message')]")
+    WebElement txtRequiredPassword;
+
+    @FindBy(xpath = "//p[contains(@class, 'alert-content-text')]")
+    WebElement txtInvalidCredentials;
+
+    //Custom methode yg berhubungan dgn Halaman Login
+    public void login(String uname, String pass){
+        username.sendKeys(uname);
+        password.sendKeys(pass);
         btnLogin.click();
-        System.out.println("klik login");
+        System.out.println("Proses login");
     }
 
-    //Methode return / Assert verifikasi
+    // atau bisa juga pakai "this" klo parameter & nama web elementnya sama
+    public void loginForm(String username, String password){
+        this.username.sendKeys(username);
+        this.password.sendKeys(password);
+        btnLogin.click();
+        System.out.println("Proses login");
+    }
+
+    public void clean(){
+        username.clear();
+        password.clear();
+    }
+
     public String getTextDashboard(){
-        return txtDashnoard.getText();
+        return txtDashboard.getText();
+    }
+    public String getTxtRequiredUname(){
+        return txtRequiredUname.getText();
+    }
+    public String getTxtRequiredPassword(){
+        return txtRequiredPassword.getText();
+    }
+    public String getTxtInvalidCredentials(){
+        return txtInvalidCredentials.getText();
     }
 
-    // Negative test, dibuatkan methode dengan parameter
-    // Fungsi bergerak di taruh sini
-
-    // Assert verifikasi boleh ditambah ke Main
-
-    // yg diubah cuma di pages dan Main, sisanya sama semua
 }
+
+
+/*
+* Catatan:
+* - Utk Negative test, biasanya akan dibuatkan methode dengan parameter
+*   bagian ini belum dijelaskan apakah harus dipisah file antara negatif dan positifnya
+* - Fungsi yg selalu dipakai (a.k.a aktif digunakan) biasanya ditaruh di Folder Pages
+* - Di bagian ini juga bisa ditambahkan Methode return / Assert untuk verifikasi methode/hasil
+*   atau bisa langsung di taruh di file main
+* - Kebanyakan QA akan bekerja di bagian folder Pages dan file Main
+*
+* */
+
+
+/*
+* Bootstap tidak bisa dipakai (get) Xpathnya
+* untuk mengatasinya perlu pakai getAttribute();
+* karena returnnya trus & false
+*
+* */

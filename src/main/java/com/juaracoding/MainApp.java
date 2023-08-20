@@ -2,6 +2,7 @@ package com.juaracoding;
 
 import com.juaracoding.drivers.DriverSingleton;
 import com.juaracoding.pages.LoginPage;
+import com.juaracoding.utils.General;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -17,14 +18,14 @@ public class MainApp {
         System.out.println("Masuk URL");
 
         LoginPage loginPage = new LoginPage();
-        loginPage.login();
+        loginPage.login("Admin", "admin123");
+        loginPage.getTextDashboard();
 
         System.out.println("Test Login");
 
-        DriverSingleton.delay(3);
+        General.delay(3);
         DriverSingleton.closeObjectInstance();
-        System.out.println("Oke");
-
+        System.out.println("Exit");
     }
 }
 

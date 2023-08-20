@@ -38,16 +38,4 @@ public class DriverSingleton {
         instance = null;
         driver.quit();
     }
-    public static void delay(long sec){
-        try {
-            Thread.sleep(sec * 1000);
-        } catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
-    }
-    public void scrollBy(int x, int y) {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        String script = String.format("window.scrollBy(%d, %d);", x, y);
-        jse.executeScript(script);
-    }
 }

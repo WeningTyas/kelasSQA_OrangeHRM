@@ -14,7 +14,7 @@ public class Chrome implements DriverStrategy {
         System.setProperty("webdriver.chrome.driver", path);
         ChromeOptions options = new ChromeOptions(); // ← ini setting chrome
 
-        // ↓ ini untuk extensi chrome, mau pake ata gak?
+        // ↓ ini untuk extensi chrome, mau pake atau gak?
         options.setExperimentalOption("useAutomationExtension", false);
         options.addArguments("--no-sandbox");
         
